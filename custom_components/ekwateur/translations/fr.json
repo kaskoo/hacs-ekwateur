@@ -1,0 +1,76 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ekwateur Billing",
+        "description": "Choisissez le type de client Ekwateur à suivre.",
+        "data": {
+          "client_category": "Type de client"
+        }
+      },
+      "individual": {
+        "title": "Client particulier",
+        "data": {
+          "client_reference": "Référence client (EKW + 8 chiffres)",
+          "civility": "Civilité",
+          "first_name": "Prénom",
+          "last_name": "Nom",
+          "electricity_sensor": "Capteur de consommation électrique (kWh)",
+          "gas_sensor": "Capteur de consommation de gaz (kWh)"
+        }
+      },
+      "pro": {
+        "title": "Client professionnel",
+        "data": {
+          "client_reference": "Référence client (EKW + 8 chiffres)",
+          "corporate_name": "Raison sociale",
+          "siret": "SIRET",
+          "pro_client_type": "Type de client professionnel",
+          "electricity_sensor": "Capteur de consommation électrique (kWh)",
+          "gas_sensor": "Capteur de consommation de gaz (kWh)"
+        }
+      }
+    },
+    "error": {
+      "invalid_client_reference": "Référence client invalide. Elle doit être au format EKW suivi de 8 chiffres.",
+      "no_sensor_selected": "Sélectionnez au moins un capteur d'électricité ou de gaz."
+    },
+    "abort": {
+      "already_configured": "Ce client est déjà configuré."
+    }
+  },
+  "selector": {
+    "client_category": {
+      "options": {
+        "individual": "Particulier",
+        "pro": "Professionnel"
+      }
+    },
+    "civility": {
+      "options": {
+        "m": "M.",
+        "mme": "Mme",
+        "mlle": "Mlle"
+      }
+    },
+    "pro_client_type": {
+      "options": {
+        "low_turnover": "Chiffre d'affaires ≤ 1M€",
+        "high_turnover": "Chiffre d'affaires > 1M€"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_cost": {
+        "name": "Coût électricité"
+      },
+      "gas_cost": {
+        "name": "Coût gaz"
+      },
+      "total_cost": {
+        "name": "Coût total"
+      }
+    }
+  }
+}

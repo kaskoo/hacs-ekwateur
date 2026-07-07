@@ -1,0 +1,76 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ekwateur Billing",
+        "description": "Choose the Ekwateur client category to track.",
+        "data": {
+          "client_category": "Client category"
+        }
+      },
+      "individual": {
+        "title": "Individual client",
+        "data": {
+          "client_reference": "Client reference (EKW + 8 digits)",
+          "civility": "Civility",
+          "first_name": "First name",
+          "last_name": "Last name",
+          "electricity_sensor": "Electricity consumption sensor (kWh)",
+          "gas_sensor": "Gas consumption sensor (kWh)"
+        }
+      },
+      "pro": {
+        "title": "Professional client",
+        "data": {
+          "client_reference": "Client reference (EKW + 8 digits)",
+          "corporate_name": "Corporate name",
+          "siret": "SIRET",
+          "pro_client_type": "Professional client type",
+          "electricity_sensor": "Electricity consumption sensor (kWh)",
+          "gas_sensor": "Gas consumption sensor (kWh)"
+        }
+      }
+    },
+    "error": {
+      "invalid_client_reference": "Invalid client reference. It must be EKW followed by 8 digits.",
+      "no_sensor_selected": "Select at least one electricity or gas sensor."
+    },
+    "abort": {
+      "already_configured": "This client is already configured."
+    }
+  },
+  "selector": {
+    "client_category": {
+      "options": {
+        "individual": "Individual",
+        "pro": "Professional"
+      }
+    },
+    "civility": {
+      "options": {
+        "m": "Mr",
+        "mme": "Mrs",
+        "mlle": "Ms"
+      }
+    },
+    "pro_client_type": {
+      "options": {
+        "low_turnover": "Turnover ≤ €1M",
+        "high_turnover": "Turnover > €1M"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "electricity_cost": {
+        "name": "Electricity cost"
+      },
+      "gas_cost": {
+        "name": "Gas cost"
+      },
+      "total_cost": {
+        "name": "Total cost"
+      }
+    }
+  }
+}
