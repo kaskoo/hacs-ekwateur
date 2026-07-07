@@ -39,12 +39,31 @@ _UNIT_TO_KWH: dict[str, Decimal] = {
 }
 
 
+def _normalize_decimal_string(raw: str) -> str:
+    """Normalize a number that may use a European comma decimal separator.
+
+    HA sensor states are normally period-decimal, but sensors sourced from
+    French utility data (scraped/template sensors) sometimes report values
+    like "12,345" meaning 12.345, not 12345. A comma is only ever treated as
+    a decimal point here, never dropped as if it were an English thousands
+    separator, since that would silently inflate the value by ~1000x.
+    """
+    raw = raw.strip()
+    if "," in raw and "." not in raw:
+        return raw.replace(",", ".")
+    if "," in raw and "." in raw:
+        if raw.rindex(",") > raw.rindex("."):
+            return raw.replace(".", "").replace(",", ".")
+        return raw.replace(",", "")
+    return raw
+
+
 def _as_kwh(state: State | None) -> Decimal | None:
     """Convert a source sensor's state to a kWh Decimal, or None if unusable."""
     if state is None or state.state in (STATE_UNKNOWN, STATE_UNAVAILABLE):
         return None
     try:
-        value = Decimal(state.state)
+        value = Decimal(_normalize_decimal_string(state.state))
     except (InvalidOperation, TypeError):
         return None
     unit = (state.attributes.get("unit_of_measurement") or "kwh").lower()
@@ -75,8 +94,10 @@ async def async_setup_entry(
         entities.append(
             EkwateurCostSensor(entry, device_info, "electricity", electricity_source, electricity_rate)
         )
+        entities.append(EkwateurRateSensor(entry, device_info, "electricity", electricity_rate))
     if gas_source:
         entities.append(EkwateurCostSensor(entry, device_info, "gas", gas_source, gas_rate))
+        entities.append(EkwateurRateSensor(entry, device_info, "gas", gas_rate))
     if electricity_source or gas_source:
         entities.append(
             EkwateurTotalCostSensor(
@@ -85,6 +106,32 @@ async def async_setup_entry(
         )
 
     async_add_entities(entities)
+
+
+class EkwateurRateSensor(SensorEntity):
+    """Flat €/kWh tariff sensor.
+
+    This is what the Energy Dashboard's "use an entity with current price"
+    (tariff) option expects: a numeric sensor whose unit ends in "/kWh".
+    The EkwateurCostSensor below reports an accumulated EUR amount instead,
+    which HA only accepts as a "track total cost" source, not as a tariff.
+    """
+
+    _attr_has_entity_name = True
+    _attr_should_poll = False
+
+    def __init__(
+        self,
+        entry: ConfigEntry,
+        device_info: DeviceInfo,
+        energy_type: str,
+        rate: Decimal,
+    ) -> None:
+        self._attr_translation_key = f"{energy_type}_rate"
+        self._attr_unique_id = f"{entry.entry_id}_{energy_type}_rate"
+        self._attr_device_info = device_info
+        self._attr_native_unit_of_measurement = "EUR/kWh"
+        self._attr_native_value = float(rate)
 
 
 class EkwateurCostSensor(SensorEntity):

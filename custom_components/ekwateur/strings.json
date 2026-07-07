@@ -70,6 +70,12 @@
       },
       "total_cost": {
         "name": "Total cost"
+      },
+      "electricity_rate": {
+        "name": "Electricity tariff"
+      },
+      "gas_rate": {
+        "name": "Gas tariff"
       }
     }
   }
