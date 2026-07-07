@@ -11,7 +11,7 @@
       "individual": {
         "title": "Individual client",
         "data": {
-          "client_reference": "Client reference (EKW + 8 digits)",
+          "client_reference": "Client reference (EKW + 9 digits)",
           "civility": "Civility",
           "first_name": "First name",
           "last_name": "Last name",
@@ -22,7 +22,7 @@
       "pro": {
         "title": "Professional client",
         "data": {
-          "client_reference": "Client reference (EKW + 8 digits)",
+          "client_reference": "Client reference (EKW + 9 digits)",
           "corporate_name": "Corporate name",
           "siret": "SIRET",
           "pro_client_type": "Professional client type",
@@ -32,7 +32,7 @@
       }
     },
     "error": {
-      "invalid_client_reference": "Invalid client reference. It must be EKW followed by 8 digits.",
+      "invalid_client_reference": "Invalid client reference. It must be EKW followed by 9 digits.",
       "no_sensor_selected": "Select at least one electricity or gas sensor."
     },
     "abort": {

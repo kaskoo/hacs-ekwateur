@@ -55,7 +55,7 @@ Copy `custom_components/ekwateur` into your Home Assistant `config/custom_compon
 Settings → Devices & Services → Add Integration → **Ekwateur Billing**.
 
 1. Choose **Individual** or **Professional**.
-2. Enter your client reference (format `EKWxxxxxxxx`) and identity/company details.
+2. Enter your client reference (format `EKW012345678`) and identity/company details.
 3. Pick the HA sensor(s) that report your electricity and/or gas consumption
    in kWh (Wh and MWh are also accepted and auto-converted). At least one is
    required.

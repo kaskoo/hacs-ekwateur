@@ -26,8 +26,9 @@ CIVILITY_M = "m"
 CIVILITY_MME = "mme"
 CIVILITY_MLLE = "mlle"
 
-# Mirrors BillingServiceImpl.CLIENT_REFERENCE_REGEX from the reference Java project.
-CLIENT_REFERENCE_REGEX = r"^EKW\d{8}$"
+# Reference Java project used 8 digits (e.g. EKW12345678); real Ekwateur
+# client references are EKW + 9 digits (e.g. EKW012345678).
+CLIENT_REFERENCE_REGEX = r"^EKW\d{9}$"
 
 # €/kWh rates, ported verbatim from util/BillingRates.java in the reference project.
 RATE_ELECTRICITY_INDIVIDUAL = Decimal("0.121")

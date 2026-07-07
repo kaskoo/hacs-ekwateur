@@ -11,7 +11,7 @@
       "individual": {
         "title": "Client particulier",
         "data": {
-          "client_reference": "Référence client (EKW + 8 chiffres)",
+          "client_reference": "Référence client (EKW + 9 chiffres)",
           "civility": "Civilité",
           "first_name": "Prénom",
           "last_name": "Nom",
@@ -22,7 +22,7 @@
       "pro": {
         "title": "Client professionnel",
         "data": {
-          "client_reference": "Référence client (EKW + 8 chiffres)",
+          "client_reference": "Référence client (EKW + 9 chiffres)",
           "corporate_name": "Raison sociale",
           "siret": "SIRET",
           "pro_client_type": "Type de client professionnel",
@@ -32,7 +32,7 @@
       }
     },
     "error": {
-      "invalid_client_reference": "Référence client invalide. Elle doit être au format EKW suivi de 8 chiffres.",
+      "invalid_client_reference": "Référence client invalide. Elle doit être au format EKW suivi de 9 chiffres.",
       "no_sensor_selected": "Sélectionnez au moins un capteur d'électricité ou de gaz."
     },
     "abort": {
